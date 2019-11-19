@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btn_crear-pqrs_guardar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".CrearPqrsActivity"
+    tools:showIn="@layout/activity_crear_pqrs">
+
+    <TextView
+        android:id="@+id/tv_crear_pqrs_tituloprincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="165dp"
+        android:text="Nuevo PQRS"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_crear_pqrs_tipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="39dp"
+        android:text="Tipo:"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_crear_pqrs_tituloprincipal" />
+
+    <Spinner
+        android:id="@+id/sp_crear_pqrs_tipo"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_crear_pqrs_tipo"
+        app:layout_constraintTop_toBottomOf="@+id/tv_crear_pqrs_tituloprincipal" />
+
+    <TextView
+        android:id="@+id/tv_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
+        android:text="Asunto:"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_crear_pqrs_tipo" />
+
+    <EditText
+        android:id="@+id/ed_crear_pqrs_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:hint="Digite el asunto a tratar"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_titulo"
+        app:layout_constraintTop_toBottomOf="@+id/sp_crear_pqrs_tipo" />
+
+    <Button
+        android:id="@+id/btn_crear_pqrs_guardando"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="162dp"
+        android:text="Guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_crear_pqrs_contenido" />
+
+    <Spinner
+        android:id="@+id/sp_crear_pqrs_clase"
+        android:layout_width="201dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="30dp"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_crear__pqrs_clase"
+        app:layout_constraintTop_toBottomOf="@+id/ed_crear_pqrs_titulo" />
+
+    <TextView
+        android:id="@+id/tv_crear__pqrs_clase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
+        android:text="Materia:"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_crear_pqrs_titulo" />
+
+    <Spinner
+        android:id="@+id/sp_crear_pqrs_profesor"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="30dp"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_crear_pqrs_profesor"
+        app:layout_constraintTop_toBottomOf="@+id/sp_crear_pqrs_clase" />
+
+    <EditText
+        android:id="@+id/ed_crear_pqrs_contenido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:hint="Contenido"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_crear_pqrs_contenido"
+        app:layout_constraintTop_toBottomOf="@+id/sp_crear_pqrs_profesor" />
+
+    <TextView
+        android:id="@+id/tv_crear_pqrs_profesor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
+        android:text="Profesor"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_crear_pqrs_clase" />
+
+    <TextView
+        android:id="@+id/tv_crear_pqrs_contenido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
+        android:text="Contenido"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_crear_pqrs_profesor" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

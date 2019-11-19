@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:paddingStart="5dp"
+    android:paddingEnd="5dp"
+    android:paddingBottom="5dp">
+
+    <ImageView
+        android:id="@+id/item_pqrs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        app:srcCompat="@mipmap/pqrs_icon" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="2">
+
+        <TextView
+            android:id="@+id/item_pqrs_tipo"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="TextView"
+            android:paddingStart="10dp"
+            android:textSize="22sp"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/item_pqrs_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="TextView"
+            android:paddingStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/item_pqrs_clase"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="TextView"
+            android:paddingStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/item_pqrs_profesor"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="TextView"
+            android:paddingStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/item_pqrs_autor"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="TextView"
+            android:paddingStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/item_pqrs_fecha"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="TextView"
+            android:paddingStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"/>
+
+
+
+
+
+    </LinearLayout>
+</LinearLayout>

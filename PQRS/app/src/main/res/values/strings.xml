@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PQRS</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_crear_pqrs">CrearPqrsActivity</string>
+</resources>
