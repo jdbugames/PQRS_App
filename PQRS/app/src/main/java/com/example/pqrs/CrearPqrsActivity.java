@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.pqrs.Models.PqrsModel;
-import com.example.pqrs.Models.UsuarioModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -60,7 +59,7 @@ public class CrearPqrsActivity extends AppCompatActivity {
                 if (!tipo.equals("")&&!titulo.equals("")&&!clase.equals("")&&!profesor.equals("")&&!contenido.equals("")){
                     String id=reference.push().getKey();
                     if (id !=null&& !id.equals("")){
-                        pqrsModel = new PqrsModel(id, tipo, titulo, clase, profesor, contenido);
+                        pqrsModel= new PqrsModel(id, tipo, titulo, clase, profesor, contenido);
                         reference.child(id).setValue(pqrsModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -104,7 +103,6 @@ public class CrearPqrsActivity extends AppCompatActivity {
         });
 
     }
-
     public  void init(){
         sp_crear_pqrs_tipo=findViewById(R.id.sp_crear_pqrs_tipo);
         sp_crear_pqrs_clase=findViewById(R.id.sp_crear_pqrs_clase);

@@ -57,24 +57,13 @@
             android:layout_gravity="center_vertical"
             android:textSize="18sp"/>
         <TextView
-            android:id="@+id/item_pqrs_autor"
+            android:id="@+id/item_pqrs_contenido"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:text="TextView"
             android:paddingStart="10dp"
             android:layout_gravity="center_vertical"
             android:textSize="18sp"/>
-        <TextView
-            android:id="@+id/item_pqrs_fecha"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:text="TextView"
-            android:paddingStart="10dp"
-            android:layout_gravity="center_vertical"
-            android:textSize="18sp"/>
-
-
-
 
 
     </LinearLayout>

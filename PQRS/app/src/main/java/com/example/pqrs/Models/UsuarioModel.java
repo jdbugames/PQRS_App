@@ -10,8 +10,9 @@ public class UsuarioModel implements Serializable {
     private String usuario;
     private String contrasena;
 
+    public UsuarioModel() {
 
-
+    }
 
     public UsuarioModel(String nombre, String cedula, String usuario, String contrasena) {
         this.setNombre(nombre);
@@ -20,21 +21,23 @@ public class UsuarioModel implements Serializable {
         this.setContrasena(contrasena);
     }
 
+    @Override
+    public String toString() {
+        return "UsuarioModel{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", cedula='" + cedula + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                '}';
+    }
+
     public UsuarioModel(String id, String nombre, String cedula, String usuario, String contrasena) {
         this.setId(id);
         this.setNombre(nombre);
         this.setCedula(cedula);
         this.setUsuario(usuario);
        this.setContrasena(contrasena);
-    }
-
-
-    public UsuarioModel() {
-
-    }
-
-    public UsuarioModel(String id) {
-
     }
 
     public String getId() {

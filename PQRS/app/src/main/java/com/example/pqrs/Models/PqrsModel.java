@@ -1,12 +1,24 @@
 package com.example.pqrs.Models;
+import java.io.Serializable;
 
-public class PqrsModel {
+public class PqrsModel implements Serializable {
     private String id;
     private String  tipo;
     private String  titulo;
     private String  clase;
     private String  profesor;
     private String  contenido;
+
+    public PqrsModel() {
+    }
+
+    public PqrsModel(String tipo, String titulo, String clase, String profesor, String contenido) {
+        this.setTipo(tipo);
+        this.setTitulo(titulo);
+        this.setClase(clase);
+        this.setProfesor(profesor);
+        this.setContenido(contenido);
+    }
 
     @Override
     public String toString() {
@@ -20,16 +32,6 @@ public class PqrsModel {
                 '}';
     }
 
-    public PqrsModel() {
-    }
-
-    public PqrsModel(String tipo, String titulo, String clase, String profesor, String contenido) {
-        this.setTipo(tipo);
-        this.setTitulo(titulo);
-        this.setClase(clase);
-        this.setProfesor(profesor);
-        this.setContenido(contenido);
-    }
 
     public PqrsModel(String id, String tipo, String titulo, String clase, String profesor, String contenido) {
         this.setId(id);
