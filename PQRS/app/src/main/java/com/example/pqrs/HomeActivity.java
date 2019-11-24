@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.pqrs.Adapters.PqrsAdapter;
 import com.example.pqrs.Models.PqrsModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,10 +26,10 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
     private ListView lv_lista_PQRS;
     private Button btn_home_nuevo_pqrs;
-    private EditText et_home_buscar;
+    private Button btn_salir;
     private ArrayList<PqrsModel> list;
     private PqrsModel model;
-
+    private FirebaseAuth mAuth;
     private final  String text_reference="PQRS";
     private FirebaseDatabase database=FirebaseDatabase.getInstance();
     private DatabaseReference reference=database.getReference(text_reference);
@@ -66,17 +67,37 @@ public class HomeActivity extends AppCompatActivity {
                 nuevopqrs();
             }
         });
+
+        btn_salir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mAuth.signOut();
+                startActivity(new Intent(HomeActivity.this,MainActivity.class));
+                finish();
+                irlogin();
+
+
+            }
+        });
+
     }
 
     public void init(){
         lv_lista_PQRS = findViewById(R.id.lv_lista_PQRS);
         list = new ArrayList<>();
         model = model;
+        mAuth=FirebaseAuth.getInstance();
         btn_home_nuevo_pqrs = findViewById(R.id.btn_home_nuevo_pqrs);
+        btn_salir= findViewById(R.id.btn_salir);
     }
 
     public void nuevopqrs(){
         Intent nuevo = new Intent(this, CrearPqrsActivity.class);
         startActivity(nuevo);
+    }
+    public   void  irlogin(){
+        Intent irlogin= new Intent(this,LoginActivity.class);
+        startActivity(irlogin);
     }
 }

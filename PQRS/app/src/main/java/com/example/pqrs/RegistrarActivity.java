@@ -11,13 +11,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pqrs.Models.UsuarioModel;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistrarActivity extends AppCompatActivity {
 
@@ -29,57 +35,83 @@ public class RegistrarActivity extends AppCompatActivity {
     private FirebaseDatabase database=FirebaseDatabase.getInstance();
     private DatabaseReference reference=database.getReference(text_reference);
 
+    private String nombre="";
+    private String cedula="";
+    private String usuario="";
+    private String contrasena="";
+
+    FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar);
         list=new ArrayList<>();
 
+        mAuth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference();
+
         init();
 
         btn_registro_usuario_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-               list= new ArrayList<>();
-                String nombre=et_registro_usuario_nombre.getText().toString();
-                String cedula=et_registro_usuario_cedula.getText().toString();
-                String usuario=et_registro_usuario_usuario.getText().toString();
-                String contrasena=et_registro_usuario_contrasena.getText().toString();
 
-                validarCampos(usuario,contrasena);
-                irinicio();
 
-                if(!nombre.equals("")&&!cedula.equals("")&&!usuario.equals("")&& !contrasena.equals(""))
-                {
-                    String id=reference.push().getKey();
-                    if(id !=null&& !id.equals("")){
-                        usuarioModel = new UsuarioModel(id,nombre,cedula,usuario,contrasena);
-                        reference.child(id).setValue(usuarioModel).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
+                 nombre=et_registro_usuario_nombre.getText().toString();
+                 cedula=et_registro_usuario_cedula.getText().toString();
+                 usuario=et_registro_usuario_usuario.getText().toString();
+                 contrasena=et_registro_usuario_contrasena.getText().toString();
+                if(!nombre.isEmpty() && !cedula.isEmpty() && !usuario.isEmpty() && !contrasena.isEmpty()){
+                    if (contrasena.length()>=6){
+                        registrarUser();
 
-                            }
-                        })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Snackbar.make(view,"no se pudo guardar, ravisa la informacion",Snackbar.LENGTH_LONG).show();
-                                    }
-                                });
-                    }else
-                    {
-                        Snackbar.make(view,"problemas al crear id en base de datos", Snackbar.LENGTH_LONG).show();
+
+                    }else {
+                        Toast.makeText(RegistrarActivity.this, "La contraseña debe tener al menos 6 caracteres.", Toast.LENGTH_SHORT).show();
                     }
 
+                } else{
+
+                    Toast.makeText(RegistrarActivity.this, "Por favor complete todos los datos.", Toast.LENGTH_SHORT).show();
                 }
-                else
-                {
-                    Toast.makeText(RegistrarActivity.this,"Por favor ingrese todos los datos ",Toast.LENGTH_SHORT).show();
-                }
+
+
 
             }
         });
 
+    }
+    private void registrarUser(){
+        mAuth.createUserWithEmailAndPassword(usuario, contrasena).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                   Map<String, Object> map = new HashMap<>();
+                   map.put("nombre", nombre);
+                   map.put("cedula", cedula);
+                   map.put("usuario", usuario);
+                   map.put("contrasena", contrasena);
+
+                   String id = mAuth.getCurrentUser().getUid();
+
+                    reference.child("Users").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task2) {
+                            if(task2.isSuccessful()){
+                                startActivity(new Intent(RegistrarActivity.this, LoginActivity.class));
+                                finish();
+                            }else{
+                                Toast.makeText(RegistrarActivity.this, "No se pudieron crear los datos correctamente.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+                else{
+                    Toast.makeText(RegistrarActivity.this, "No se pudo registrar este usuario.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public void init(){
@@ -94,18 +126,6 @@ public class RegistrarActivity extends AppCompatActivity {
         Intent inicio = new Intent(this,MainActivity.class);
         startActivity(inicio);
 
-    }
-
-    public boolean validarCampos(String usuario, String contrasena){
-        if(usuario.isEmpty()|| contrasena.isEmpty()){
-            Toast.makeText(this,"Por favor ingrese usuario y conraseña", Toast.LENGTH_LONG).show();
-            return false;
-        }else if (contrasena.length()<4|| contrasena.length()>4){
-            Toast.makeText(this,"Debe ingresar una contraseña numerica de 4 digitos", Toast.LENGTH_LONG).show();
-            return false;
-        }else{
-            return true;
-        }
     }
 
 }
